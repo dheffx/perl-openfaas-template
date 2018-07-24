@@ -1,2 +1,7 @@
 language: perl
 fprocess: perl index.pl
+build_options:
+  - name: ssl
+    packages:
+      - openssl
+      - openssl-dev

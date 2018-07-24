@@ -1,9 +1,11 @@
 FROM alpine
 
+ARG ADDITIONAL_PACKAGE
+
 RUN mkdir -p /home/app
 
 RUN apk update && apk add gcc g++ make patch perl perl-dev curl wget ${ADDITIONAL_PACKAGE} 
-RUN curl -L http://xrl.us/cpanm > /bin/cpanm && chmod +x /bin/cpanm
+RUN curl -sL https://cpanmin.us | perl - App::cpanminus
 
 RUN echo "Pulling watchdog binary from Github." \
     && curl -sSL https://github.com/openfaas/faas/releases/download/0.8.0/fwatchdog > /usr/bin/fwatchdog \
