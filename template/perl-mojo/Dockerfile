@@ -12,16 +12,16 @@ RUN apk --no-cache add gcc g++ make patch curl wget perl=${PERL_VERSION} perl-de
     && apk del curl --no-cache \
     && mkdir -p /home/app
 
-## Install template dependencies
 WORKDIR /home/app
-## This ordering means the cpan installation is cached for the outer function handler.
-COPY cpanfile .
-COPY index.pl .
-RUN cpanm --installdeps .
 
-## Install function dependencies
+# This ordering means the cpan installation is cached for the outer function handler.
+COPY cpanfile .
+RUN cpanm --installdeps .
+COPY index.pl .
+
 WORKDIR /home/app/function
-## cpanfile + installation to cache dependencies without function code
+
+# Cpanfile + installation to cache dependencies without function code
 COPY function/cpanfile .
 RUN cpanm --installdeps .
 
@@ -36,7 +36,7 @@ RUN chmod +rx -R ./function \
 
 USER app
 
-ENV fprocess="perl index.pl" \
+ENV fprocess="perl index.pl cgi" \
     PERL5LIB=/usr/local/lib/perl5:/home/app/ \
     PATH=/usr/local/bin:$PATH
 

@@ -1,0 +1,10 @@
+language: perl-mojo
+fprocess: perl index.pl cgi
+build_options:
+  - name: ssl
+    packages:
+      - openssl
+      - openssl-dev
+welcome_message: |
+  You have created a new function which uses Perl 5.26.3 with Mojo::Lite
+  Add your dependencies to the cpanfile
