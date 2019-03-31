@@ -1,4 +1,6 @@
 package function::handler;
+use strict;
+use warnings;
 
 =pod
 
