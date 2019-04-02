@@ -1,7 +1,7 @@
 # openfaas template for perl running alpine linux
 
 ```shell
-faas-cli template pull https://github.com/dheffx/perl-openfaas-template
+faas template pull https://github.com/dheffx/perl-openfaas-template
 ```
 
 two variants:
@@ -16,7 +16,7 @@ Both use 5.26.3 by default but can be changed via `PERL_VERSION` argument
 Simply slurps up STDIN and makes it available to the function, then encodes the result
 
 ```shell
-faas-cli new my-function-in-perl --lang perl-mojo
+faas new my-function-in-perl --lang perl
 ```
 
 ## perl-mojo
@@ -26,7 +26,7 @@ Uses Mojo::Lite to allow handling of HTTP request
 A function receives the Mojo::Message::Request and a function::context object
 
 ```shell
-faas-cli new my-function-in-perl --lang perl-mojo
+faas new my-mojo-in-perl --lang perl-mojo
 ```
 
 Mojo logs to STDERR by default, and OpenFaaS combines STDOUT and STDERR by default.
