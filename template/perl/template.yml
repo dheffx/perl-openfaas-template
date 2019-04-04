@@ -5,6 +5,7 @@ build_options:
     packages:
       - openssl
       - openssl-dev
+      - perl-net-ssleay
 welcome_message: |
   You have created a new function which uses Perl 5.26.3
   Add your dependencies to the cpanfile
