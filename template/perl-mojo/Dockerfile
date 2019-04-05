@@ -6,7 +6,7 @@ ARG ADDITIONAL_PACKAGE
 RUN addgroup -S app && adduser app -S -G app
 
 RUN apk --no-cache add gcc g++ make patch curl wget perl=${PERL_VERSION} perl-dev=${PERL_VERSION} ${ADDITIONAL_PACKAGE}  \
-    && curl -sSL https://github.com/openfaas/faas/releases/download/0.9.14/fwatchdog > /usr/bin/fwatchdog \
+    && curl -sSLf https://github.com/openfaas-incubator/of-watchdog/releases/download/0.5.0/of-watchdog > /usr/bin/fwatchdog \
     && chmod +x /usr/bin/fwatchdog \
     && curl -sL https://cpanmin.us | perl - App::cpanminus \
     && apk del curl --no-cache \
@@ -36,7 +36,13 @@ RUN chmod +rx -R ./function \
 
 USER app
 
-ENV fprocess="perl index.pl cgi" \
+ENV cgi_headers="true" \
+    fprocess="perl index.pl daemon" \
+    mode="http" \
+    upstream_url="http://127.0.0.1:3000" \
+    exec_timeout="10s" \
+    write_timeout="15s" \
+    read_timeout="15s" \
     PERL5LIB=/usr/local/lib/perl5:/home/app/ \
     PATH=/usr/local/bin:$PATH
 

@@ -23,11 +23,7 @@ faas new my-function-in-perl --lang perl
 
 Uses Mojo::Lite to allow handling of HTTP request
 
-A function receives the Mojo::Message::Request and a function::context object
-
 ```shell
 faas new my-mojo-in-perl --lang perl-mojo
 ```
-
-Mojo logs to STDERR by default, and OpenFaaS combines STDOUT and STDERR by default.
-You can set `combine_output: false` in your function.yaml's environment section, and Mojo's logging will instead show up in `docker service logs -f my_func`
+The perl-mojo template uses the of-watchdog in openfaas-incubator

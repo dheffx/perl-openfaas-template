@@ -1,5 +1,5 @@
 language: perl-mojo
-fprocess: perl index.pl cgi
+fprocess: perl index.pl daemon 
 build_options:
   - name: ssl
     packages:
